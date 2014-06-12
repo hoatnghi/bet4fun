@@ -81,28 +81,25 @@ class BetService {
         user.save(flush: true)
         group.removeFromUsers(user)
         group.save(flush: true)
+
+        // clean up bet
+        Bet.executeUpdate("delete from Bet where owner=:owner", [owner:user.username])
     }
 
     def createMatch(String groupId, String home, String guess, Date date, int hScore, int gScore,
                     float hRate, float gRate, double amount) {
-
-        println groupId
-
         BetGroup group = BetGroup.findById(groupId)
         if (!group) {
             return 'Unable to found group ' + groupId
         }
-        println "2"
         def match = new BetMatch(home: Team.findById(home), guess: Team.findById(guess), date: date,
                 hScore: hScore, gScore: gScore, hRate: hRate, gRate: gRate, amount: amount)
         if (date.before(new Date()))
             match.flagClosed = true
 
         match.save(flush: true)
-        println "3"
         group.addToMatches(match)
         group.save(flush: true)
-        println "4"
         if (date.before(Calendar.getInstance(new Locale('vi_VN')).getTime()))
             updateBetAmount(match.id)
     }
@@ -122,28 +119,31 @@ class BetService {
             match.flagClosed = true
         match.save(flush: true)
         if (date.before(Calendar.getInstance(new Locale('vi_VN')).getTime()))
-            updateBetAmount(matchId)
+            updateBetAmount(match.id)
     }
 
     def deleteMatch(String groupId, String matchId) {
         def group = BetGroup.findById(groupId)
         def match = BetMatch.findById(matchId)
         group.matches.remove(match)
+        Bet.executeUpdate('delete from Bet where match=:match', [match: match])
         match.delete()
         group.save(flush: true)
     }
 
     def takeBet(String matchId, String userId, int choose, String comment) {
+        def now = Calendar.getInstance(new Locale('vi_VN')).getTime()
         def match = BetMatch.findById(matchId)
-        if (match.date.before(Calendar.getInstance(new Locale('vi_VN')).getTime()))
+        if (match.date.before(now))
             return "Match was closed for betting."
         def bet = Bet.findByMatchAndOwner(match, userId)
         if (!bet) {
-            bet = new Bet(choose: choose, comment: comment, owner: userId, createDate: new Date(),
+            bet = new Bet(choose: choose, comment: comment, owner: userId, createDate: now,
                     match: match).save(flush: true)
         } else {
             bet.choose = choose
             bet.comment = comment
+            bet.createDate = now
             bet.save(flush: true)
         }
         match.addToBets(bet)
@@ -180,6 +180,8 @@ class BetService {
                 }
                 if (result < 0) {
                     bet.amount = match.amount
+                } else if (result == 0) {
+                    bet.amount = match.amount / 2
                 } else {
                     bet.amount = 0
                 }
@@ -192,12 +194,6 @@ class BetService {
         }
         match.flagClosed = true
         match.save(flush: true)
-    }
-
-    def getAmountFundByGroup(Long groupId) {
-        def match = BetMatch.createCriteria().list {
-            createAlias('bets', 'b')
-        }
     }
 
     def addTeam(String name, String code) {

@@ -1,5 +1,7 @@
 package happybet
 
+import grails.plugin.springsecurity.annotation.Secured
+
 class UserController {
 
     def userService
@@ -19,21 +21,6 @@ class UserController {
         render(view: 'signup')
     }
 
-    def forget() {
-        render(view: 'forget')
-    }
-
-    def reset() {
-        def errMsg = userService.resetPassword(params.email)
-        if (errMsg) {
-            flash.error = errMsg
-
-        } else {
-            flash.message = 'Please check your email for your credential.'
-        }
-        render(view: 'forget')
-    }
-
     def change() {
         render(view: 'changePass')
     }
@@ -48,4 +35,5 @@ class UserController {
         }
         change()
     }
+
 }

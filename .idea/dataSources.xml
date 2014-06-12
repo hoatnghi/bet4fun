@@ -1,12 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="926856555">
+  <component name="DataSourceManagerImpl" format="xml" hash="1916728124">
     <data-source source="LOCAL" name="bet4fun dev" uuid="4d6b990b-b407-4cf7-abf0-3ea30ef3259d">
       <driver-ref>mysql</driver-ref>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://localhost/bet?useUnicode=yes&amp;characterEncoding=UTF-8</jdbc-url>
       <user-name>root</user-name>
       <user-password>dfd8dfc5dfc5dfde</user-password>
+      <libraries />
+    </data-source>
+    <data-source source="LOCAL" name="MySQL - ebdb@aabqlfb1dkuooz.clnpix9npvif.us-west-2.rds.amazonaws.com" uuid="05cbccd7-9558-4432-a0af-d3ee0a35b2f5">
+      <driver-ref>mysql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://aabqlfb1dkuooz.clnpix9npvif.us-west-2.rds.amazonaws.com:3306/ebdb</jdbc-url>
+      <user-name>root</user-name>
+      <user-password>dfd8dfc5dfc5dfdedf9bdf98df99df9edf9fdf9c</user-password>
+      <driver-properties>
+        <property name="zeroDateTimeBehavior" value="convertToNull" />
+        <property name="tinyInt1isBit" value="false" />
+      </driver-properties>
       <libraries />
     </data-source>
   </component>

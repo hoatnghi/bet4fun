@@ -58,7 +58,7 @@
 </div>
 <script>
     $(document).ready(function() {
-        $('#dataTables-example').dataTable();
+        $('#dataTables-example').dataTable({"bLengthChange": false, "bPaginate": false});
     });
 </script>
 </body>

@@ -16,7 +16,8 @@ class BetController {
 
     def bet() {
         def owner = request.getRemoteUser()
-        def bets = BetMatch.findById(params.matchId).bets
+        def match = BetMatch.findById(params.matchId)
+        def bets = match.bets
         def bet
         for (def i = 0 ; i < bets.size(); i++) {
             if (owner.equals(bets[i].owner)) {
@@ -25,7 +26,7 @@ class BetController {
             }
         }
 
-        render view: 'bet', model: [bets: bets, bet: bet]
+        render view: 'bet', model: [bets: bets, bet: bet, match: match]
     }
 
     def takeBet() {
@@ -45,19 +46,37 @@ class BetController {
         render view: 'result', model: [bets: bets, groups: user.betGroups]
     }
 
-    def showAll() {
+    def showByMatch() {
         def groups = User.findByUsername(request.getRemoteUser()).betGroups
+        def gBets = [:]
         groups.each { group ->
-            group.matches.each { match ->
-                def total = 0
-                match.bets.each { bet ->
-                    total += bet.amount
+            def bets = Bet.createCriteria().list {
+                createAlias('match', 'm')
+                projections {
+                    groupProperty('match')
+                    sum('amount')
+                    //count('*')
                 }
-                match.total = total
+                order('m.date')
             }
-            //betService.getAmountFundByGroup(group.id)
+            gBets.put(group, bets)
         }
+        render view: 'showMatch', model: [groups: gBets]
+    }
 
-        render view: 'show', model: [groups: groups]
+    def showByUser() {
+        def groups = User.findByUsername(request.getRemoteUser()).betGroups
+        def gBets = [:]
+        groups.each { group ->
+            def bets = Bet.createCriteria().list {
+                projections {
+                    groupProperty('owner')
+                    sum('amount')
+                }
+                order('amount', 'desc')
+            }
+            gBets.put(group, bets)
+        }
+        render view: 'showUser', model: [groups: gBets]
     }
 }

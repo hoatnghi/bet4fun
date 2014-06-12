@@ -6,6 +6,7 @@ import grails.plugin.springsecurity.annotation.Secured
 class GroupController {
 
     def betService
+    def userService
 
     def index() {
         render view: 'index', model: [groups: BetGroup.findAllByOwner(request.getRemoteUser())]
@@ -68,5 +69,32 @@ class GroupController {
             betService.importMatches(params.id, group)
         }
         index()
+    }
+
+    def forget() {
+        render(view: 'forget')
+    }
+
+    def reset() {
+        def groups = BetGroup.findAllByOwner(request.getRemoteUser())
+        def check = false
+        groups.each {group ->
+            group.users.each {user ->
+                if (user.username.equals(params.email))
+                    check = true
+            }
+        }
+        if (check) {
+            def errMsg = userService.resetPassword(params.email)
+            if (errMsg) {
+                flash.error = errMsg
+            } else {
+                flash.message = 'Please check your email for your credential.'
+            }
+        } else {
+            flash.error = 'User not found in your group'
+        }
+
+        render(view: 'forget')
     }
 }

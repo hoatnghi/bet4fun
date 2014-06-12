@@ -28,15 +28,19 @@
                                            <g:if test='${hasCookie}'>checked='checked'</g:if>/>
                                     <label for="remember_me">Remember Me</label>
                                 </div>
+                                <!--
                                 <div class="form-group">
                                     <label for="username">Don't have an account? <g:link controller="user" action="signup">Sign up for one</g:link></label>
                                 </div>
+                                -->
                                 <div class="buttons-container">
                                     <div class="buttons">
                                         <button type="submit" class="btn btn-lg btn-success btn-block">
                                             ${message(code: "springSecurity.login.button")}
                                         </button>
+                                        <!--
                                         <a name="cancel" accesskey="c" href="${createLink(controller: 'user', action: 'forget')}">Can't access your account?</a>
+                                        -->
                                     </div>
                                 </div>
                             </fieldset>

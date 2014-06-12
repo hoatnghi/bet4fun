@@ -26,13 +26,19 @@
                 <a href="#"><i class="fa fa-table fa-fw"></i> Group Owner<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li><a href="${createLink(controller: 'group')}">Groups Management</a></li>
+                    <li><a href="${createLink(controller: 'group', action: 'forget')}">Reset Password</a></li>
                 </ul>
             </sec:ifAnyGranted>
             </li>
             <sec:ifAnyGranted roles="ROLE_USER">
-                <li><a href="${createLink(controller: 'bet', action: 'index')}"><i class="fa fa-gear fa-fw"></i> Bets</a></li>
-                <li><a href="${createLink(controller: 'bet', action: 'result')}"><i class="fa fa-gear fa-fw"></i> Result</a></li>
-                <li><a href="${createLink(controller: 'bet', action: 'showAll')}"><i class="fa fa-gear fa-fw"></i> Show All</a></li>
+                <li><a href="${createLink(controller: 'bet', action: 'index')}"><i class="fa fa-dollar fa-fw"></i> Bets</a></li>
+                <li><a href="${createLink(controller: 'bet', action: 'result')}"><i class="fa fa-list-alt fa-fw"></i> Result</a></li>
+                <li><a href="#"><i class="fa fa-beer fa-fw"></i> Show All</a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="${createLink(controller: 'bet', action: 'showByMatch')}">By Match</a></li>
+                        <li><a href="${createLink(controller: 'bet', action: 'showByUser')}">By User</a></li>
+                    </ul>
+                </li>
             </sec:ifAnyGranted>
         </ul>
         <!-- /#side-menu -->

@@ -16,5 +16,6 @@ class AdminControllerSpec extends Specification {
     }
 
     void "test something"() {
+        AdminController admin = new AdminController()
     }
 }

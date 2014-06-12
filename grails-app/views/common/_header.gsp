@@ -7,11 +7,6 @@
     </button>
     <a class="navbar-brand" href="${createLink(uri: '/')}">BET</a>
 </div>
-<ul class="nav navbar-top-links navbar-left">
-    <sec:ifNotLoggedIn>
-        <li><a class="aui-button aui-button-primary" href="${createLink(controller: 'user')}">Sign Up</a></li>
-    </sec:ifNotLoggedIn>
-</ul>
 <!-- /.navbar-header -->
 <ul class="nav navbar-top-links navbar-right">
     <sec:ifNotLoggedIn>

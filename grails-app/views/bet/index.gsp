@@ -26,34 +26,49 @@
                         <table class="table table-striped table-bordered table-hover" id="dataTables-${group.id}">
                             <thead>
                                 <tr>
-                                    <th>Match</th>
                                     <th>Date</th>
+                                    <th>Hour</th>
+                                    <th>Match</th>
                                     <th>Rate</th>
                                     <th>Result</th>
                                     <th>Amount</th>
+                                    <th>Your bet</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <g:each in="${group.matches}" var="match">
                                     <tr>
+                                        <td><g:formatDate format="yyyy-MM-dd" date="${match.date}"/></td>
                                         <td>
-                                            <g:link controller="bet" action="bet" params="[groupId: group.id, matchId: match.id]">
-                                                <span>
-                                                    ${match.home.name}&nbsp;&nbsp;
-                                                    <span class="flag-icon flag-icon-${match.home.isoCode2}"></span>
-                                                    &nbsp;&nbsp;vs&nbsp;&nbsp;
-                                                    <span class="flag-icon flag-icon-${match.guess.isoCode2}"></span>&nbsp;&nbsp;
-                                                    ${match.guess.name}
-                                                </span>
-                                            </g:link>
+                                            <g:if test="${match.date.after(Calendar.getInstance(new Locale('vi_VN')).getTime())}">
+                                                <g:link controller="bet" action="bet" params="[groupId: group.id, matchId: match.id]">
+                                                    <g:formatDate format="HH:mm" date="${match.date}"/>
+                                                </g:link>
+                                            </g:if>
+                                            <g:else><g:formatDate format="HH:mm" date="${match.date}"/></g:else>
                                         </td>
-                                        <td><g:formatDate format="yyyy-MM-dd HH:mm" date="${match.date}"/></td>
+                                        <td align="center">
+                                            <span>
+                                                ${match.home.name}&nbsp;&nbsp;
+                                                <span class="flag-icon flag-icon-${match.home.isoCode2}"></span>
+                                                &nbsp;&nbsp;vs&nbsp;&nbsp;
+                                                <span class="flag-icon flag-icon-${match.guess.isoCode2}"></span>&nbsp;&nbsp;
+                                                ${match.guess.name}
+                                            </span>
+                                        </td>
                                         <td>
-                                            <g:formatNumber number="${match.hRate}" format="#.##"/>
-                                            :<g:formatNumber number="${match.gRate}" format="#.##"/>
+                                            <g:formatNumber number="${match.hRate}" format="#.##"/> : <g:formatNumber number="${match.gRate}" format="#.##"/>
                                         </td>
-                                        <td>${match.hScore}:${match.gScore}</td>
+                                        <td>${match.hScore} : ${match.gScore}</td>
                                         <td>${match.amount}</td>
+                                        <td>
+                                            <g:each in="${bets}" var="bet">
+                                                <g:if test="${bet.matchId == match.id}">
+                                                    <g:if test="${bet.choose == 1}">${match.home.name}</g:if>
+                                                    <g:elseif test="${bet.choose == -1}">${match.guess.name}</g:elseif>
+                                                </g:if>
+                                            </g:each>
+                                        </td>
                                     </tr>
                                 </g:each>
                             </tbody>
@@ -71,8 +86,10 @@
     $(document).ready(function() {
         <g:each in="${groups}" status="i" var="group">
         $('#dataTables-${group.id}').dataTable({
-            "order": [[ 1, "desc" ]]
-        });
+            "bLengthChange": false,
+            "bPaginate": false,
+            "order": [[ 1, "asc" ]]
+        }).rowGrouping({bExpandableGrouping : true});
         </g:each>
     });
 </script>

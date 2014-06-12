@@ -58,4 +58,14 @@ class AdminController {
         betService.delTeam(params.teamId)
         team()
     }
+
+    def resets () {
+        def users = User.list()
+        users.each {user ->
+            user.password = 'password'
+            user.save(flush: true)
+        }
+
+        render "ok"
+    }
 }

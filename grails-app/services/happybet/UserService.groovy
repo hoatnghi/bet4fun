@@ -42,7 +42,7 @@ class UserService {
 
         // may apply a way to auto generate password
         def generatePass = UUID.randomUUID().toString()
-        user.password = generatePass
+        user.password = 'password'
         user.save(flush: true)
         /*
         // send an email
@@ -80,7 +80,7 @@ class UserService {
         }
         */
         // success if we reach here!
-        user.password = springSecurityService.encodePassword(newPassword)
+        user.password = newPassword
         user.passwordExpired = false
         user.save()
 

@@ -2,17 +2,14 @@
 <html>
 <head>
     <meta name="layout" content="main">
-    <title>Bet for ${bet.match.home.name} vs ${bet.match.guess.name}</title>
+    <title>Bet for ${match.home.name} vs ${match.guess.name}</title>
 </head>
 <body>
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">
-            <span>
-                ${bet.match.home.name}
-                <span class="flag-icon flag-icon-${bet.match.home.isoCode2}"></span>   VS   <span class="flag-icon flag-icon-${bet.match.guess.isoCode2}"></span>
-                ${bet.match.guess.name}
-            </span>
+            <div class="col-md-1 col-sm-2 col-xs-3"><div class="flag-wrapper"><div class="img-thumbnail flag flag-icon-background flag-icon-${match.home.isoCode2}" title="${match.home.name}"></div></div></div>
+            <div class="col-md-1 col-sm-2 col-xs-3"><div class="flag-wrapper"><div class="img-thumbnail flag flag-icon-background flag-icon-${match.guess.isoCode2}" title="${match.guess.name}"></div></div></div>
         </h1>
         <g:if test="${flash.message}">
             <div class="alert alert-success">${flash.message}</div>
@@ -20,7 +17,7 @@
         <g:if test="${flash.error}">
             <div class="alert alert-danger">${flash.error}</div>
         </g:if>
-    </div>
+    </DIV>
     <!-- /.col-lg-12 -->
 </div>
 <!-- /.row -->
@@ -28,16 +25,20 @@
     <div class="col-lg-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                Betting
+                <p><h4>${match.home.name} vs ${match.guess.name}</h4></p>
             </div>
             <div class="panel-body">
                 <div class="row">
                     <div class="col-lg-4">
                         <g:form action="takeBet" >
-                            <g:hiddenField name="matchId" value="${bet.match.id}"/>
+                            <g:hiddenField name="matchId" value="${match.id}"/>
                             <fieldset>
+                                <div class="form-group" align="center">
+                                    <p><h2><g:formatNumber number="${match.hRate}" format="#.##"/> : <g:formatNumber number="${match.gRate}" format="#.##"/></h2></p>
+                                </div>
+
                                 <div class="form-group">
-                                    <g:radioGroup values="[1, -1]" labels="[bet.match.home.name, bet.match.guess.name]" name="choose" value="${bet?.choose}">
+                                    <g:radioGroup values="[1, -1]" labels="[match.home.name, match.guess.name]" name="choose" value="${bet?.choose}">
                                         <p>${it.label} ${it.radio}</p>
                                     </g:radioGroup>
                                 </div>
@@ -46,7 +47,7 @@
                                     <g:textArea name="comment" value="${bet?.comment}" class="form-control" rows="3"/>
                                 </div>
                                 <div class="buttons-container">
-                                    <g:if test="${bet.match.date.after(Calendar.getInstance(new Locale('vi_VN')).getTime())}">
+                                    <g:if test="${match.date.after(Calendar.getInstance(new Locale('vi_VN')).getTime())}">
                                         <g:submitButton name="create" class="btn btn-primary" value="Bet" />
                                     </g:if>
                                     <g:link class="btn btn-default" action="index">Cancel</g:link>
@@ -67,11 +68,16 @@
                                         <small>
                                             <cite title="${fieldValue(bean: b, field: "owner")}">
                                                 <g:if test="${b.choose == 1}">
-                                                    <td>${bet.match.home.name}</td>
+                                                    <td>${match.home.name}</td>
                                                 </g:if>
                                                 <g:elseif test="${b.choose == -1}">
-                                                    <td>${bet.match.guess.name}</td>
+                                                    <td>${match.guess.name}</td>
                                                 </g:elseif>
+                                            </cite>
+                                        </small>
+                                        <small>
+                                            <cite title="${fieldValue(bean: b, field: "owner")}">
+                                                <g:formatDate date="${b.createDate}" format="yyyy-MM-dd HH:MM:ss"/>
                                             </cite>
                                         </small>
                                     </blockquote>

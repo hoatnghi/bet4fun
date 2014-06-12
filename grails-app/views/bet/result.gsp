@@ -26,26 +26,35 @@
                         <table class="table table-striped table-bordered table-hover" id="dataTables-${group.id}">
                             <thead>
                             <tr>
-                                <th>Match</th>
                                 <th>Date</th>
+                                <th>Hour</th>
+                                <th>Match</th>
                                 <th>Rate</th>
                                 <th>Result</th>
                                 <th>Your Bet</th>
-                                <th>You loose!!!</th>
+                                <th>Payment</th>
                             </tr>
                             </thead>
                             <tbody>
                             <g:each in="${bets}" var="bet">
                                 <g:if test="${bet.match.group.id = group.id}">
                                     <tr>
+                                        <td><g:formatDate format="yyyy-MM-dd" date="${bet.match.date}"/></td>
                                         <td>
+                                            <g:if test="${bet.match.date.after(Calendar.getInstance(new Locale('vi_VN')).getTime())}">
+                                                <g:link controller="bet" action="bet" params="[groupId: group.id, matchId: bet.match.id]">
+                                                    <g:formatDate format="HH:mm" date="${bet.match.date}"/>
+                                                </g:link>
+                                            </g:if>
+                                            <g:else><g:formatDate format="HH:mm" date="${bet.match.date}"/></g:else>
+                                        </td>
+                                        <td align="center">
                                             <span>
-                                                ${bet.match.home.name}
-                                                <span class="flag-icon flag-icon-${bet.match.home.isoCode2}"></span>   VS   <span class="flag-icon flag-icon-${bet.match.guess.isoCode2}"></span>
-                                                ${bet.match.guess.name}
+                                                ${bet.match.home.name}&nbsp;
+                                                <span class="flag-icon flag-icon-${bet.match.home.isoCode2}"></span>&nbsp;&nbsp;vs&nbsp;&nbsp;<span class="flag-icon flag-icon-${bet.match.guess.isoCode2}"></span>
+                                                &nbsp;${bet.match.guess.name}
                                             </span>
                                         </td>
-                                        <td><g:formatDate format="yyyy-MM-dd HH:mm" date="${bet.match.date}"/></td>
                                         <td>
                                             <g:formatNumber number="${bet.match.hRate}" format="#.##"/>
                                             :<g:formatNumber number="${bet.match.gRate}" format="#.##"/>
@@ -75,8 +84,10 @@
     $(document).ready(function() {
         <g:each in="${groups}" status="i" var="group">
         $('#dataTables-${group.id}').dataTable({
-            "order": [[ 1, "desc" ]]
-        });
+            "bLengthChange": false,
+            "bPaginate": false,
+            "order": [[ 1, "asc" ]]
+        }).rowGrouping({bExpandableGrouping : true});
         </g:each>
     });
 </script>

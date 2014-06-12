@@ -20,6 +20,7 @@
         <script src="${resource(dir: 'js', file: 'jquery-1.10.2.js')}"></script>
         <script src="${resource(dir: 'js/plugins/dataTables', file: 'jquery.dataTables.js')}"></script>
         <script src="${resource(dir: 'js/plugins/dataTables', file: 'dataTables.bootstrap.js')}"></script>
+        <script src="${resource(dir: 'js/plugins/dataTables', file: 'jquery.dataTables.rowGrouping.js')}"></script>
         <script src="${resource(dir: 'flags/assets', file: 'docs.js')}"></script>
 	</head>
 	<body>
