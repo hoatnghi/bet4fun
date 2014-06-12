@@ -40,7 +40,7 @@
                                     <tr>
                                         <td><g:formatDate format="yyyy-MM-dd" date="${match.date}"/></td>
                                         <td>
-                                            <g:if test="${match.date.after(new Date())}">
+                                            <g:if test="${!match.flagClosed && match.date.after(new Date())}">
                                                 <g:link controller="bet" action="bet" params="[groupId: group.id, matchId: match.id]">
                                                     <g:formatDate format="HH:mm" date="${match.date}"/>
                                                 </g:link>

@@ -47,7 +47,7 @@
                                     <g:textArea name="comment" value="${bet?.comment}" class="form-control" rows="3"/>
                                 </div>
                                 <div class="buttons-container">
-                                    <g:if test="${match.date.after(new Date())}">
+                                    <g:if test="${!match.flagClosed && match.date.after(new Date())}">
                                         <g:submitButton name="create" class="btn btn-primary" value="Bet" />
                                     </g:if>
                                     <g:link class="btn btn-default" action="index">Cancel</g:link>
