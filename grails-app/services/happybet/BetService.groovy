@@ -100,7 +100,7 @@ class BetService {
         match.save(flush: true)
         group.addToMatches(match)
         group.save(flush: true)
-        if (date.before(Calendar.getInstance(new Locale('vi_VN')).getTime()))
+        if (date.before(new Date()))
             updateBetAmount(match.id)
     }
 
@@ -118,7 +118,7 @@ class BetService {
         if (date.before(new Date()))
             match.flagClosed = true
         match.save(flush: true)
-        if (date.before(Calendar.getInstance(new Locale('vi_VN')).getTime()))
+        if (date.before(new Date()))
             updateBetAmount(match.id)
     }
 
@@ -132,7 +132,7 @@ class BetService {
     }
 
     def takeBet(String matchId, String userId, int choose, String comment) {
-        def now = Calendar.getInstance(new Locale('vi_VN')).getTime()
+        def now = Calendar.getInstance(TimeZone.getTimeZone('UTC+7000')).getTime()
         def match = BetMatch.findById(matchId)
         if (match.date.before(now))
             return "Match was closed for betting."
