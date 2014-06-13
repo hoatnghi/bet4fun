@@ -17,12 +17,7 @@
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <div class="col-lg-6">
-                        ${group.key.name} - ${group.key.description}
-                    </div>
-                    <div class="col-lg-6">
-                        <g:formatNumber number="${BetMatch.findAllByGroup(group.key)}" type="currency"/>
-                    </div>
+                    ${group.key.name} - ${group.key.description}
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">

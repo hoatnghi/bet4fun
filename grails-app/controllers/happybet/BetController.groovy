@@ -58,7 +58,6 @@ class BetController {
                 projections {
                     groupProperty('match')
                     sum('amount')
-                    //count('*')
                 }
                 order('m.date')
             }
