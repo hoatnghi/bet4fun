@@ -18,6 +18,7 @@ class BootStrap {
             /*create the first user role map*/
             UserRole.create(user, adminRole, true)
         }
+        TimeZone.setDefault(TimeZone.getTimeZone("UTC+7000"))
     }
     def destroy = {
     }
