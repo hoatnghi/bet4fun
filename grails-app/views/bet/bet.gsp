@@ -62,25 +62,27 @@
                             </div>
                             <div class="panel-body">
                                 <g:each in="${bets}" var="b">
+                                    <g:if test="${b.comment}">
                                     <h4>${fieldValue(bean: b, field: "owner")}</h4>
-                                    <blockquote>
-                                        <p>${fieldValue(bean: b, field: "comment")}</p>
-                                        <small>
-                                            <cite title="${fieldValue(bean: b, field: "owner")}">
-                                                <g:if test="${b.choose == 1}">
-                                                    <td>${match.home.name}</td>
-                                                </g:if>
-                                                <g:elseif test="${b.choose == -1}">
-                                                    <td>${match.guess.name}</td>
-                                                </g:elseif>
-                                            </cite>
-                                        </small>
-                                        <small>
-                                            <cite title="${fieldValue(bean: b, field: "owner")}">
-                                                <g:formatDate date="${b.createDate}" format="yyyy-MM-dd HH:MM:ss"/>
-                                            </cite>
-                                        </small>
-                                    </blockquote>
+                                        <blockquote>
+                                            <p>${fieldValue(bean: b, field: "comment")}</p>
+                                            <small>
+                                                <cite title="${fieldValue(bean: b, field: "owner")}">
+                                                    <g:if test="${b.choose == 1}">
+                                                        <td>${match.home.name}</td>
+                                                    </g:if>
+                                                    <g:elseif test="${b.choose == -1}">
+                                                        <td>${match.guess.name}</td>
+                                                    </g:elseif>
+                                                </cite>
+                                            </small>
+                                            <small>
+                                                <cite title="${fieldValue(bean: b, field: "owner")}">
+                                                    <g:formatDate date="${b.createDate}" format="yyyy-MM-dd HH:MM:ss"/>
+                                                </cite>
+                                            </small>
+                                        </blockquote>
+                                    </g:if>
                                 </g:each>
                             </div>
                         </div>

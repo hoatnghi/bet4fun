@@ -33,7 +33,7 @@ class BetController {
 
     def takeBet() {
         def errMsg = betService.takeBet(params.matchId, request.getRemoteUser(), Integer.valueOf(params.choose),
-                params.comment, Calendar.getInstance(request.getLocale()))
+                params.comment, Calendar.getInstance(request.getLocale()).getTime())
         if (errMsg) {
             flash.message = errMsg
             bet()
