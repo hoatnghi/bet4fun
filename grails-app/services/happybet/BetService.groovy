@@ -131,7 +131,8 @@ class BetService {
         group.save(flush: true)
     }
 
-    def takeBet(String matchId, String userId, int choose, String comment, Date now) {
+    def takeBet(String matchId, String userId, int choose, String comment) {
+        Date now = Calendar.getInstance(Locale.getDefault()).getTime()
         def match = BetMatch.findById(matchId)
         if (match.date.before(now))
             return "Match was closed for betting."

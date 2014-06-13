@@ -1,8 +1,6 @@
 package happybet
 
 import grails.plugin.springsecurity.annotation.Secured
-import org.h2.util.DateTimeUtils
-import org.hibernate.criterion.CriteriaSpecification
 
 @Secured(['ROLE_USER'])
 class BetController {
@@ -12,7 +10,6 @@ class BetController {
     def index() {
         def bets = Bet.findAllByOwner(request.getRemoteUser())
         def user = User.findByUsername(request.getRemoteUser())
-
         render view: 'index', model: [bets: bets, groups: user.betGroups]
     }
 
@@ -33,7 +30,7 @@ class BetController {
 
     def takeBet() {
         def errMsg = betService.takeBet(params.matchId, request.getRemoteUser(), Integer.valueOf(params.choose),
-                params.comment, Calendar.getInstance(request.getLocale()).getTime())
+                params.comment)
         if (errMsg) {
             flash.message = errMsg
             bet()

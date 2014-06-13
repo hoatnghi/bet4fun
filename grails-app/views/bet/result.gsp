@@ -38,7 +38,7 @@
                                     <tr>
                                         <td><g:formatDate format="yyyy-MM-dd" date="${bet.match.date}"/></td>
                                         <td>
-                                            <g:if test="${!bet.match.flagClosed && bet.match.date.after(java.util.Calendar.getInstance(request.getLocale()).getTime())}">
+                                            <g:if test="${!bet.match.flagClosed && bet.match.date.after(Calendar.getInstance(Locale.getDefault()).getTime())}">
                                                 <g:link controller="bet" action="bet" params="[groupId: group.id, matchId: bet.match.id]">
                                                     <g:formatDate format="HH:mm" date="${bet.match.date}"/>
                                                 </g:link>
