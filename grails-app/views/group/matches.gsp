@@ -73,6 +73,7 @@
                                 </div>
                                 <div class="form-group">
                                     <g:submitButton name="create" class="btn btn-primary" value="Save" />
+                                    <g:link class="btn btn-primary" action="close" params="[matchId: matchId]">Close</g:link>
                                     <g:link class="btn btn-default" action="index">Cancel</g:link>
                                 </div>
                             </fieldset>

@@ -26,16 +26,21 @@ class GroupController {
         if (params.matchId)
             betService.updateMatch(params.matchId, params.home, params.guess, params.date, Integer.valueOf(params.hScore),
                     Integer.valueOf(params.gScore), Float.valueOf(params.hRate), Float.valueOf(params.gRate),
-                    Double.valueOf(params.amount), Calendar.getInstance(request.getLocale()).getTime())
+                    Double.valueOf(params.amount), java.util.Calendar.getInstance(request.getLocale()).getTime())
         else
             betService.createMatch(params.group, params.home, params.guess, params.date, Integer.valueOf(params.hScore),
                     Integer.valueOf(params.gScore), Float.valueOf(params.hRate), Float.valueOf(params.gRate),
-                    Double.valueOf(params.amount), Calendar.getInstance(request.getLocale()).getTime())
+                    Double.valueOf(params.amount), java.util.Calendar.getInstance(request.getLocale()).getTime())
         redirect(controller: 'group')
     }
 
     def remove() {
         betService.deleteMatch(params.groupId, params.matchId)
+        index()
+    }
+
+    def close() {
+        betService.updateBetAmount(Long.valueOf(params.matchId))
         index()
     }
 

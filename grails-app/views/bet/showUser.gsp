@@ -1,4 +1,4 @@
-<%@ page import="happybet.Bet" %>
+<%@ page import="happybet.BetMatch; happybet.Bet" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +17,12 @@
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    ${group.key.name} - ${group.key.description}
+                    <div class="col-lg-6">
+                        ${group.key.name} - ${group.key.description}
+                    </div>
+                    <div class="col-lg-6">
+                        <g:formatNumber number="${BetMatch.findAllByGroup(group.key)}" type="currency"/>
+                    </div>
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
@@ -29,7 +34,7 @@
                                     <table class="table table-striped table-bordered table-hover">
                                         <tr>
                                             <td class="col-lg-6">${user.getAt(0)}</td>
-                                            <td class="col-lg-6">${user.getAt(1)}</td>
+                                            <td class="col-lg-6"><g:formatNumber number="${user.getAt(1)}" type="currency"/></td>
                                         </tr>
                                     </table>
                                 </a>

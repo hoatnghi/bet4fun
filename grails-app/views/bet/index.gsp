@@ -8,9 +8,6 @@
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">Betting</h1>
-        <g:if test="${flash.message}">
-            <div class="alert alert-success">${flash.message}</div>
-        </g:if>
     </div>
 </div>
 <div class="row">
@@ -40,7 +37,7 @@
                                     <tr>
                                         <td><g:formatDate format="yyyy-MM-dd" date="${match.date}"/></td>
                                         <td>
-                                            <g:if test="${match.date.after(Calendar.getInstance(new Locale('vi_VN')).getTime())}">
+                                            <g:if test="${!match.flagClosed && match.date.after(java.util.Calendar.getInstance(request.getLocale()).getTime())}">
                                                 <g:link controller="bet" action="bet" params="[groupId: group.id, matchId: match.id]">
                                                     <g:formatDate format="HH:mm" date="${match.date}"/>
                                                 </g:link>
@@ -60,7 +57,7 @@
                                             <g:formatNumber number="${match.hRate}" format="#.##"/> : <g:formatNumber number="${match.gRate}" format="#.##"/>
                                         </td>
                                         <td>${match.hScore} : ${match.gScore}</td>
-                                        <td>${match.amount}</td>
+                                        <td><g:formatNumber number="${match.amount}" type="currency"/></td>
                                         <td>
                                             <g:each in="${bets}" var="bet">
                                                 <g:if test="${bet.matchId == match.id}">

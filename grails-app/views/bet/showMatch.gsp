@@ -40,7 +40,7 @@
                                                 </td>
                                                 <td><g:formatNumber number="${user.getAt(0).hRate}" format="#.##"/> : <g:formatNumber number="${user.getAt(0).gRate}" format="#.##"/></td>
                                                 <td><g:formatNumber number="${user.getAt(0).hScore}" format="#.##"/> : <g:formatNumber number="${user.getAt(0).gScore}" format="#.##"/></td>
-                                                <td>Total Fund: <g:formatNumber number="${user.getAt(1)}" format="###,###,###.##"/></td>
+                                                <td>Total Fund: <g:formatNumber number="${user.getAt(1)}" type="currency"/></td>
                                                 <td>${user.getAt(0).home.name}: ${happybet.Bet.countByMatchAndChoose(user.getAt(0), 1)}</td>
                                                 <td>${user.getAt(0).guess.name}: ${happybet.Bet.countByMatchAndChoose(user.getAt(0), -1)}</td>
                                             </tr>
@@ -67,7 +67,7 @@
                                                         <g:elseif test="${bet.choose == -1}">${bet.match.guess.name}</g:elseif>
                                                         <g:else>N/A</g:else>
                                                     </td>
-                                                    <td><g:formatNumber number="${bet.amount}" format="#.##"/></td>
+                                                    <td><g:formatNumber number="${bet.amount}" type="currency"/></td>
                                                     <td><g:formatDate format="yyyy-MM-dd HH:mm:ss" date="${bet.createDate}"/></td>
                                                 </tr>
                                             </g:each>
