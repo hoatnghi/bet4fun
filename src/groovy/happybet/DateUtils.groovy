@@ -7,13 +7,14 @@ import java.text.SimpleDateFormat
  */
 class DateUtils {
 
-    public static final TimeZone TIMEZONE = TimeZone.getTimeZone('UTC+7')
+    public static final TimeZone TIMEZONE = TimeZone.getTimeZone('GMT+9')
     private static final FULL_DATE_PATTERN = 'yyyy-MM-dd HH:mm:ss.sss'
 
     static boolean isFuture(Date date) {
         if (!date) return false
-        if (converToTimeZone(date).before(new Date()))
+        if (convertFromTimeZone(new Date()).before(date))
             return true
+        return false
     }
 
     static Date getNow() {
@@ -26,8 +27,8 @@ class DateUtils {
         if (!date) return null
         Calendar cal = Calendar.getInstance(TIMEZONE)
         cal.setTime(date)
+        cal.setTimeZone(TIMEZONE)
         SimpleDateFormat sdf = new SimpleDateFormat(FULL_DATE_PATTERN)
-        sdf.setTimeZone(TIMEZONE)
         return sdf.parse(cal.format(FULL_DATE_PATTERN))
     }
 
