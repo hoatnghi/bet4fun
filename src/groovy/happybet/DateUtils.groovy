@@ -16,11 +16,18 @@ class DateUtils {
             return true
     }
 
+    static Date getNow() {
+        Calendar cal = Calendar.getInstance(TIMEZONE)
+        SimpleDateFormat sdf = new SimpleDateFormat(FULL_DATE_PATTERN)
+        return sdf.parse(cal.format(FULL_DATE_PATTERN))
+    }
+
     static Date convertFromTimeZone(Date date) {
         if (!date) return null
         Calendar cal = Calendar.getInstance(TIMEZONE)
         cal.setTime(date)
         SimpleDateFormat sdf = new SimpleDateFormat(FULL_DATE_PATTERN)
+        sdf.setTimeZone(TIMEZONE)
         return sdf.parse(cal.format(FULL_DATE_PATTERN))
     }
 

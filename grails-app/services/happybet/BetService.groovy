@@ -132,7 +132,7 @@ class BetService {
     }
 
     def takeBet(String matchId, String userId, int choose, String comment) {
-        Date now = Calendar.getInstance(Locale.getDefault()).getTime()
+        Date now = DateUtils.getNow()
         def match = BetMatch.findById(matchId)
         if (match.date.before(now))
             return "Match was closed for betting."
