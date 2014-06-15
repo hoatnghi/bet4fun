@@ -17,9 +17,9 @@ class DateUtils {
     }
 
     static Date getNow() {
-        Calendar cal = Calendar.getInstance(TIMEZONE)
         SimpleDateFormat sdf = new SimpleDateFormat(FULL_DATE_PATTERN)
-        return sdf.parse(cal.format(FULL_DATE_PATTERN))
+        sdf.setTimeZone(TIMEZONE)
+        return sdf.parse(Calendar.getInstance(TIMEZONE).format(FULL_DATE_PATTERN))
     }
 
     static Date convertFromTimeZone(Date date) {
