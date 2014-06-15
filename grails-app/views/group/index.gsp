@@ -75,9 +75,6 @@
                     <g:link controller="group" action="matches" params="[groupId: group.id]">
                         <button type="button" class="btn btn-primary"><i class="fa fa-plus-circle fa-fw"></i> Match</button>
                     </g:link>
-                    <g:link controller="group" action="sysSchedules" params="[id: group.id]">
-                        <button type="button" class="btn btn-primary">View System Schedules</button>
-                    </g:link>
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">

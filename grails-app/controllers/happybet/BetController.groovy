@@ -70,9 +70,9 @@ class BetController {
             def bets = Bet.createCriteria().list {
                 projections {
                     groupProperty('owner')
-                    sum('amount')
+                    sum('amount', 'total')
                 }
-                order('amount', 'desc')
+                order('total', 'desc')
             }
             gBets.put(group, bets)
         }

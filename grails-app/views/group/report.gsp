@@ -47,6 +47,7 @@
                         </thead>
                         <tbody>
                         <g:each in="${bets}" var="bet">
+                            <g:if test="${bet.amount > 0}">
                             <tr>
                                 <td>
                                     ${bet.owner}
@@ -76,6 +77,7 @@
                                 <td><g:formatNumber number="${bet.amount}" format="#.##"/></td>
                                 <td><g:formatDate format="yyyy-MM-dd HH:mm:ss" date="${bet.createDate}"/></td>
                             </tr>
+                            </g:if>
                         </g:each>
                         </tbody>
                     </table>

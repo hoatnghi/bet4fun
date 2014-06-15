@@ -24,7 +24,7 @@
                     <div class="panel-group" id="accordion">
                     <g:each in="${group.value}" status="index" var="user">
                         <div class="panel panel-default">
-                            <div class="panel-heading">
+                            <div>
                                 <a data-toggle="collapse" data-parent="#accordion" href="#collapse-${index}">
                                     <table class="table table-striped table-bordered table-hover">
                                         <tr>
@@ -50,8 +50,8 @@
                                         </thead>
                                         <tbody>
                                         <g:each in="${happybet.Bet.findAllByOwner(user.getAt(0))}" var="bet">
-                                            <tr>
-                                                <td align="center" class="col-lg-5">
+                                            <tr align="center">
+                                                <td class="col-lg-5">
                                                     <span>
                                                         ${bet.match.home.name}&nbsp;&nbsp;
                                                         <span class="flag-icon flag-icon-${bet.match.home.isoCode2}"></span>

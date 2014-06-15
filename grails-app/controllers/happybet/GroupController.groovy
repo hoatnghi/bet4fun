@@ -39,11 +39,6 @@ class GroupController {
         index()
     }
 
-    def close() {
-        betService.updateBetAmount(Long.valueOf(params.matchId))
-        index()
-    }
-
     def member() {
         render view: 'member', model: [groupId: params.groupId]
     }
@@ -60,19 +55,6 @@ class GroupController {
 
     def delUser() {
         betService.removeUserFromGroup(params.groupId, params.userId)
-        index()
-    }
-
-    def sysSchedules() {
-        def schedules = SystemSchedule.findAllByEndDateGreaterThan(new Date())
-        render view: 'sysSchedules', model: [schedules: schedules]
-    }
-
-    def importMatches() {
-        def groups = BetGroup.findAllByOwner(request.getRemoteUser())
-        groups.each { group ->
-            betService.importMatches(params.id, group)
-        }
         index()
     }
 

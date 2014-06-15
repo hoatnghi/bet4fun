@@ -11,10 +11,6 @@ class AdminController {
         render view: 'group', model: [groups: BetGroup.list()]
     }
 
-    def build() {
-        render view: 'buildGroup', model: [systems: SystemSchedule.list()]
-    }
-
     def createGroup () {
         def errMsg = betService.createGroup(params.name, params.description, params.owner, params.expiredDate)
         if (errMsg) {

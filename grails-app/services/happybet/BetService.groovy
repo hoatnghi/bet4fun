@@ -150,21 +150,6 @@ class BetService {
         match.save(flush: true)
     }
 
-    def importMatches(String scheduleId, BetGroup group) {
-        def schedule = SystemSchedule.get(scheduleId)
-        group.matches.each {match->
-            Bet.executeUpdate("delete from Bet where match=:match", [match:match])
-        }
-        BetMatch.executeUpdate("delete from BetMatch where group=:group", [group:group])
-        schedule.matches.each { obj ->
-            def match = new BetMatch(home: obj.home, guess: obj.guess, date: obj.date, hScore: obj.hScore,
-                    gScore: obj.gScore, hRate: obj.hRate, gRate: obj.gRate, amount: 0, group: group)
-            match.save(flush: true)
-            group.addToMatches(match).save(flush: true)
-        }
-        group.save(flush: true)
-    }
-
     def updateBetAmount(Long matchId) {
         def match = BetMatch.findById(matchId)
         match.group.users.each {user ->
