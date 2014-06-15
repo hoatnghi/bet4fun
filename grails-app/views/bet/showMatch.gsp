@@ -1,4 +1,4 @@
-<%@ page import="happybet.Bet" %>
+<%@ page import="happybet.DateUtils; happybet.Bet" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,7 +29,7 @@
                                         <table class="table table-striped table-bordered table-hover">
                                             <tr>
                                                 <td><g:formatDate date="${user.getAt(0).date}" format="yyyy-MM-dd HH:mm"/></td>
-                                                <td align="center" class="col-lg-5">
+                                                <td align="center">
                                                     <span>
                                                         ${user.getAt(0).home.name}&nbsp;&nbsp;
                                                         <span class="flag-icon flag-icon-${user.getAt(0).home.isoCode2}"></span>

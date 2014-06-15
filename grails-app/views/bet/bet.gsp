@@ -47,7 +47,7 @@
                                     <g:textArea name="comment" value="${bet?.comment}" class="form-control" rows="3"/>
                                 </div>
                                 <div class="buttons-container">
-                                    <g:if test="${!match.flagClosed && match.date.after(Calendar.getInstance(Locale.getDefault()).getTime())}">
+                                    <g:if test="${!match.flagClosed && happybet.DateUtils.isFuture(match.date)}">
                                         <g:submitButton name="create" class="btn btn-primary" value="Bet" />
                                     </g:if>
                                     <g:link class="btn btn-default" action="index">Cancel</g:link>

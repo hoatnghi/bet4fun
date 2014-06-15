@@ -39,6 +39,9 @@
         <script src="${resource(dir: 'js', file: 'bootstrap.min.js')}"></script>
         <script src="${resource(dir: 'js/plugins/metisMenu', file: 'jquery.metisMenu.js')}"></script>
 
+        <!-- jquery print element -->
+        <script src="${resource(dir: 'js', file: 'jquery.printElement.js')}"></script>
+
         <!-- SB Admin Scripts - Include with every page -->
         </script><script src="${resource(dir: 'js', file: 'sb-admin.js')}"></script>
 	</body>

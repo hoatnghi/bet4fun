@@ -18,4 +18,8 @@ class BetMatch {
 
     static hasMany = [bets: Bet]
     static belongsTo = [group: BetGroup]
+
+    def getName() {
+        return home.name + ' vs ' + guess.name
+    }
 }

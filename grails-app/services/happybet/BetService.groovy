@@ -87,7 +87,7 @@ class BetService {
     }
 
     def createMatch(String groupId, String home, String guess, Date date, int hScore, int gScore,
-                    float hRate, float gRate, double amount, Date now) {
+                    float hRate, float gRate, double amount) {
         BetGroup group = BetGroup.findById(groupId)
         if (!group) {
             return 'Unable to found group ' + groupId
@@ -97,15 +97,15 @@ class BetService {
         if (date.before(new Date()))
             match.flagClosed = true
 
-        match.save(flush: true)
         group.addToMatches(match)
         group.save(flush: true)
-        if (date.before(now))
+        match.save(flush: true)
+        if (match.flagClosed || !DateUtils.isFuture(date))
             updateBetAmount(match.id)
     }
 
     def updateMatch(String matchId, String home, String guess, Date date, int hScore, int gScore,
-                    float hRate, float gRate, double amount, Date now) {
+                    float hRate, float gRate, double amount) {
         def match = BetMatch.findById(matchId)
         match.home = Team.findById(home)
         match.guess = Team.findById(guess)
@@ -115,10 +115,10 @@ class BetService {
         match.hRate = hRate
         match.gRate = gRate
         match.amount = amount
-        if (date.before(new Date()))
+        if (!DateUtils.isFuture(date))
             match.flagClosed = true
         match.save(flush: true)
-        if (date.before(now))
+        if (match.flagClosed || !DateUtils.isFuture(date))
             updateBetAmount(match.id)
     }
 

@@ -1,3 +1,4 @@
+<%@ page import="happybet.DateUtils" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,7 +27,7 @@
                     <!-- /.panel-heading -->
                     <div class="panel-body">
                         <div class="table-responsive">
-                            <table class="table table-striped table-bordered table-hover" id="dataTables-user-${group.id}">
+                            <table class="table table-striped table-bordered table-hover">
                                 <tbody>
                                     <tr><td>${group.name}</td></tr>
                                     <tr><td>${group.description}</td></tr>
@@ -48,7 +49,8 @@
                     <!-- /.panel-heading -->
                     <div class="panel-body">
                         <div class="table-responsive">
-                            <table class="table table-striped table-bordered table-hover" id="dataTables-user-${group.id}">
+                            <table class="table table-striped table-bordered table-hover" id="dataTables-${group.id}">
+                                <thead><tr><th>User</th></tr></thead>
                                 <tbody>
                                     <g:each in="${group.users}" status="m" var="u">
                                         <tr>
@@ -131,8 +133,8 @@
 <script>
     $(document).ready(function() {
         <g:each in="${groups}" status="i" var="group">
+            $('#dataTables-${group.id}').dataTable();
             $('#dataTables-match-${group.id}').dataTable();
-            $('#dataTables-user-${group.id}').dataTable();
         </g:each>
     });
 </script>

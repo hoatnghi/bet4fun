@@ -26,6 +26,7 @@
                 <a href="#"><i class="fa fa-table fa-fw"></i> Group Owner<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li><a href="${createLink(controller: 'group')}">Groups Management</a></li>
+                    <li><a href="${createLink(controller: 'group', action: 'report')}">Report</a></li>
                     <li><a href="${createLink(controller: 'group', action: 'forget')}">Reset Password</a></li>
                 </ul>
             </sec:ifAnyGranted>

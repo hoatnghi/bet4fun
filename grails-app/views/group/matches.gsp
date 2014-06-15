@@ -1,3 +1,4 @@
+<%@ page import="happybet.DateUtils" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -57,7 +58,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="date">Date<span class="required-indicator">*</span></label>
-                                    <g:datePicker name="date" precision="hour"  value="${betMatchInstance?.date}"  />
+                                    <g:datePicker name="date" precision="hour"  value="${DateUtils.convertToTimeZone(betMatchInstance?.date)}"  />
                                 </div>
                                 <div class="form-group">
                                     <label for="hRate">Home Team Rate<span class="required-indicator">*</span></label>

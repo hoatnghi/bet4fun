@@ -26,11 +26,11 @@ class GroupController {
         if (params.matchId)
             betService.updateMatch(params.matchId, params.home, params.guess, params.date, Integer.valueOf(params.hScore),
                     Integer.valueOf(params.gScore), Float.valueOf(params.hRate), Float.valueOf(params.gRate),
-                    Double.valueOf(params.amount), java.util.Calendar.getInstance(request.getLocale()).getTime())
+                    Double.valueOf(params.amount))
         else
             betService.createMatch(params.group, params.home, params.guess, params.date, Integer.valueOf(params.hScore),
                     Integer.valueOf(params.gScore), Float.valueOf(params.hRate), Float.valueOf(params.gRate),
-                    Double.valueOf(params.amount), java.util.Calendar.getInstance(request.getLocale()).getTime())
+                    Double.valueOf(params.amount))
         redirect(controller: 'group')
     }
 
@@ -101,5 +101,32 @@ class GroupController {
         }
 
         render(view: 'forget')
+    }
+
+    def report() {
+        def group = BetGroup.findByOwner(request.getRemoteUser())
+        def matches = BetMatch.findAllByGroup(group)
+        def summary
+        def bets = []
+        if (params.matches) {
+            def ids = []
+            params.matches.each { m ->
+                ids.add(Long.valueOf(m))
+            }
+            summary = Bet.createCriteria().list {
+                createAlias('match', 'm')
+                inList('m.id', ids)
+                projections {
+                    groupProperty('owner')
+                    sum('amount')
+                }
+                order('amount', 'desc')
+            }
+            bets = Bet.createCriteria().list {
+                createAlias('match', 'm')
+                inList('m.id', ids)
+            }
+        }
+        render(view: 'report', model: [matches: matches, bets: bets, sum: summary])
     }
 }

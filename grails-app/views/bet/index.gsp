@@ -1,3 +1,4 @@
+<%@ page import="happybet.DateUtils" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,7 +38,7 @@
                                     <tr>
                                         <td><g:formatDate format="yyyy-MM-dd" date="${match.date}"/></td>
                                         <td>
-                                            <g:if test="${!match.flagClosed && match.date.after(Calendar.getInstance(Locale.getDefault()).getTime())}">
+                                            <g:if test="${!match.flagClosed && happybet.DateUtils.isFuture(match.date)}">
                                                 <g:link controller="bet" action="bet" params="[groupId: group.id, matchId: match.id]">
                                                     <g:formatDate format="HH:mm" date="${match.date}"/>
                                                 </g:link>
