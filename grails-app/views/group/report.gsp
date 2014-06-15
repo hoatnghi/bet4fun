@@ -19,17 +19,16 @@
             </div>
             <div class="form-group">
                 <g:submitButton name="Search" class="btn btn-primary"/>
+                <button name="Print" class="btn btn-primary" onclick="javascript:print();">Print</button>
             </div>
         </g:form>
     </div>
 </div>
 <g:if test="${bets}">
+
 <div id="content" class="row">
     <div class="col-lg-12">
         <div class="panel panel-default">
-            <div class="panel-heading">
-                <button name="Print" class="btn btn-primary" onclick="javascript:print();">Print</button>
-            </div>
             <!-- /.panel-heading -->
             <div class="panel-body">
                 <div class="table-responsive">
@@ -98,14 +97,12 @@
     });
     function print() {
         //$("#content").printElement({printMode:'popup'});
-        var printContents = document.getElementById('content').innerHTML;
-        var originalContents = document.body.innerHTML;
+        var w = window.open('', 'content');
+        var content = $('#content').html();
+        w.document.write(content);
 
-        document.body.innerHTML = printContents;
-
-        window.print();
-
-        document.body.innerHTML = originalContents;
+        w.print();
+        w.close();
     }
 </script>
 </body>
