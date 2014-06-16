@@ -49,9 +49,11 @@ class BetController {
     def showByMatch() {
         def groups = User.findByUsername(request.getRemoteUser()).betGroups
         def gBets = [:]
+        def totals = [:]
         groups.each { group ->
             def bets = Bet.createCriteria().list {
                 createAlias('match', 'm')
+                inList('match', group.matches)
                 projections {
                     groupProperty('match')
                     sum('amount')
@@ -59,15 +61,23 @@ class BetController {
                 order('m.date')
             }
             gBets.put(group, bets)
+            def total = 0
+            bets.each { bet ->
+                total += bet.getAt(1)
+            }
+            totals.put(group.id, total)
         }
-        render view: 'showMatch', model: [groups: gBets]
+        render view: 'showMatch', model: [groups: gBets, totals: totals]
     }
 
     def showByUser() {
         def groups = User.findByUsername(request.getRemoteUser()).betGroups
         def gBets = [:]
+        def totals = [:]
         groups.each { group ->
             def bets = Bet.createCriteria().list {
+                createAlias('match', 'm')
+                inList('match', group.matches)
                 projections {
                     groupProperty('owner')
                     sum('amount', 'total')
@@ -75,7 +85,12 @@ class BetController {
                 order('total', 'desc')
             }
             gBets.put(group, bets)
+            def total = 0
+            bets.each { bet ->
+                total += bet.getAt(1)
+            }
+            totals.put(group.id, total)
         }
-        render view: 'showUser', model: [groups: gBets]
+        render view: 'showUser', model: [groups: gBets, totals: totals]
     }
 }

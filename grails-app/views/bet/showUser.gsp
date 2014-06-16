@@ -17,7 +17,18 @@
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    ${group.key.name} - ${group.key.description}
+                    <table class="table table-striped table-bordered table-hover">
+                        <tr>
+                            <td>${group.key.name} - ${group.key.description}</td>
+                            <td bgcolor="red">
+                                <g:each in="${totals}" var="total">
+                                    <g:if test="${total.key == group.key.id}">
+                                        <g:formatNumber number="${total.value}" type="currency"/>
+                                    </g:if>
+                                </g:each>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
