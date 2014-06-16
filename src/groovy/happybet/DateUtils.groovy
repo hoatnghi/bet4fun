@@ -7,7 +7,7 @@ import java.text.SimpleDateFormat
  */
 class DateUtils {
 
-    public static final TimeZone TIMEZONE = TimeZone.getTimeZone('GMT+7')
+    public static final TimeZone TIMEZONE = TimeZone.getTimeZone('GMT+9')
     private static final FULL_DATE_PATTERN = 'yyyy-MM-dd HH:mm:ss.sss'
 
     static boolean isFuture(Date date) {
@@ -18,9 +18,7 @@ class DateUtils {
     }
 
     static Date getNow() {
-        SimpleDateFormat sdf = new SimpleDateFormat(FULL_DATE_PATTERN)
-        sdf.setTimeZone(TIMEZONE)
-        return sdf.parse(Calendar.getInstance(TIMEZONE).format(FULL_DATE_PATTERN))
+        return convertFromTimeZone(new Date())
     }
 
     static Date convertFromTimeZone(Date date) {

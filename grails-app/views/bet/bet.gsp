@@ -78,7 +78,7 @@
                                             </small>
                                             <small>
                                                 <cite title="${fieldValue(bean: b, field: "owner")}">
-                                                    <g:formatDate date="${b.createDate}" format="yyyy-MM-dd HH:MM:ss"/>
+                                                    <g:formatDate date="${b.createDate}" format="yyyy-MM-dd HH:mm:ss"/>
                                                 </cite>
                                             </small>
                                         </blockquote>
