@@ -50,7 +50,10 @@
                     <div class="panel-body">
                         <div class="table-responsive">
                             <table class="table table-striped table-bordered table-hover" id="dataTables-${group.id}">
-                                <thead><tr><th>User</th></tr></thead>
+                                <thead>
+                                    <tr><th></th></tr>
+                                    <tr><th></th></tr>
+                                </thead>
                                 <tbody>
                                     <g:each in="${group.users}" status="m" var="u">
                                         <tr>
