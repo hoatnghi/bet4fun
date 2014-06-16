@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="02a3e2e4-7c21-460d-a6f4-2ba124d2960d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bet4fun-grailsPlugins.iml" afterPath="$PROJECT_DIR$/bet4fun-grailsPlugins.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bet4fun.iml" afterPath="$PROJECT_DIR$/bet4fun.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/views/group/index.gsp" afterPath="$PROJECT_DIR$/grails-app/views/group/index.gsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/views/group/matches.gsp" afterPath="$PROJECT_DIR$/grails-app/views/group/matches.gsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="bet4fun.iws" />
@@ -90,8 +87,8 @@
       <file leaf-file-name="index.gsp" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/grails-app/views/group/index.gsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.93394077" vertical-offset="780" max-vertical-offset="2499">
-              <caret line="70" column="26" selection-start-line="70" selection-start-column="26" selection-end-line="70" selection-end-column="26" />
+            <state vertical-scroll-proportion="-1.2346241" vertical-offset="1681" max-vertical-offset="2482">
+              <caret line="67" column="40" selection-start-line="67" selection-start-column="40" selection-end-line="67" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -501,7 +498,7 @@
       <workItem from="1402809684260" duration="9945000" />
       <workItem from="1402824649611" duration="1568000" />
       <workItem from="1402831153781" duration="2212000" />
-      <workItem from="1402894777107" duration="2055000" />
+      <workItem from="1402894777107" duration="2656000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1402122171194</created>
@@ -579,11 +576,15 @@
       <created>1402825752851</created>
       <updated>1402825752851</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="fix conflict code">
+      <created>1402897564295</created>
+      <updated>1402897564295</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="137754000" />
+    <option name="totallyTimeSpent" value="138355000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="916" extended-state="6" />
@@ -615,6 +616,7 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Grails View" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20218228" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34015346" sideWeight="0.5" order="16" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24967907" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -624,7 +626,6 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32551318" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34015346" sideWeight="0.5" order="16" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -690,7 +691,8 @@
     <MESSAGE value="fix currency" />
     <MESSAGE value="fix misc" />
     <MESSAGE value="fix local time" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix local time" />
+    <MESSAGE value="fix conflict code" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix conflict code" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1047,8 +1049,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/grails-app/views/group/index.gsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.93394077" vertical-offset="780" max-vertical-offset="2499">
-          <caret line="70" column="26" selection-start-line="70" selection-start-column="26" selection-end-line="70" selection-end-column="26" />
+        <state vertical-scroll-proportion="-1.2346241" vertical-offset="1681" max-vertical-offset="2482">
+          <caret line="67" column="40" selection-start-line="67" selection-start-column="40" selection-end-line="67" selection-end-column="40" />
           <folding />
         </state>
       </provider>
