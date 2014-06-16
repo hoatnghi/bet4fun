@@ -7,7 +7,7 @@ import java.text.SimpleDateFormat
  */
 class DateUtils {
 
-    public static final TimeZone TIMEZONE = TimeZone.getTimeZone('GMT+9')
+    public static final TimeZone TIMEZONE = TimeZone.getTimeZone('GMT+7')
     private static final FULL_DATE_PATTERN = 'yyyy-MM-dd HH:mm:ss.sss'
 
     static boolean isFuture(Date date) {
