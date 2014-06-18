@@ -35,7 +35,7 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="col-lg-4">
-                        <g:form controller="user" action="credential" method="POST" class="aui">
+                        <g:form controller="user" action="credential" method="POST">
                             <fieldset>
                                 <div class="form-group">
                                     <label for="currPass">Current Password<span class="icon-required">(required)</span></label>
@@ -56,8 +56,8 @@
 
                                 <div class="form-group">
                                     <div class="buttons">
-                                        <button type="submit" class="btn btn-primary">Reset</button>
-                                        <g:link class="btn btn-default">Cancel</g:link>
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                        <a class="btn btn-default" name="cancel" accesskey="c" href="${createLink(uri: '/')}">Cancel</a>
                                     </div>
                                 </div>
                             </fieldset>
