@@ -13,6 +13,9 @@
                         <h3 class="panel-title">Please Sign In</h3>
                     </div>
                     <div class="panel-body">
+                        <g:if test='${flash.message}'>
+                            <div class='alert alert-danger'>${flash.message}</div>
+                        </g:if>
                         <form action='${postUrl}' method='POST' id='loginForm' role='form'>
                             <fieldset>
                                 <div class="form-group">
