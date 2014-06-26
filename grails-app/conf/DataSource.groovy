@@ -39,10 +39,10 @@ environments {
     production {
         dataSource {
             username = "root"
-            password = "root123456"
+            password = "root"
             pooled = true
             driverClassName = "com.mysql.jdbc.Driver"
-            url = "jdbc:mysql://aabqlfb1dkuooz.clnpix9npvif.us-west-2.rds.amazonaws.com:3306/ebdb"
+            url = "jdbc:mysql://localhost/bet?useUnicode=yes&characterEncoding=UTF-8"
             dialect = org.hibernate.dialect.MySQL5InnoDBDialect
             properties {
                 validationQuery = "SELECT 1"
